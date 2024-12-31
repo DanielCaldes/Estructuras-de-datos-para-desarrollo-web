@@ -13,29 +13,16 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 1. Clona este repositorio:
 
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+   git clone https://github.com/DanielCaldes/Estructuras-de-datos-para-desarrollo-web.git
+   cd Estructuras-de-datos-para-desarrollo-web
    ```
 
-2. Crea un entorno virtual:
+2. Crea y activa el entorno virtual (ejemplo con conda):
 
    ```bash
-   python -m venv venv
+   conda create --name nombre_del_entorno python=3.x
+   conda activate nombre_del_entorno
    ```
-
-3. Activa el entorno virtual:
-   
-   - En Windows:
-
-     ```bash
-     .\venv\Scripts\activate
-     ```
-
-   - En macOS/Linux:
-
-     ```bash
-     source venv/bin/activate
-     ```
 
 4. Instala las dependencias:
 
