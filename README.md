@@ -24,19 +24,25 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
    conda activate nombre_del_entorno
    ```
 
-4. Instala las dependencias:
+3. Instala las dependencias:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Ejecuta la aplicación:
+4. Ejecuta la aplicación:
 
    ```bash
    uvicorn "Estructuras de datos:app" --reload
    ```
 
    Esto iniciará el servidor en `http://127.0.0.1:8000`.
+
+5. Accede a la documentación de la API en Swagger:
+
+   Una vez que el servidor esté en funcionamiento, podrás acceder a la documentación interactiva de la API en Swagger en la siguiente URL:
+   
+   http://127.0.0.1:8000/docs
 
 ## Endpoints
 
