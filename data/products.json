@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "product_name": "Patatas",
+        "price": 2.0
+    },
+    {
+        "id": 2,
+        "product_name": "Salchichas",
+        "price": 1.0
+    }
+]
