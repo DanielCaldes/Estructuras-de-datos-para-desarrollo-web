@@ -33,7 +33,7 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 4. Ejecuta la aplicación:
 
    ```bash
-   uvicorn "Estructuras de datos:app" --reload
+   uvicorn "app:app" --reload
    ```
 
    Esto iniciará el servidor en `http://127.0.0.1:8000`.
