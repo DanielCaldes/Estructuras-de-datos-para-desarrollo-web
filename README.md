@@ -2,13 +2,15 @@
 
 Este es un servicio de gestión de productos y pedidos desarrollado con **FastAPI**. La aplicación permite crear productos, consultar productos por ID, crear órdenes, listar órdenes, actualizar y eliminar órdenes. Los productos y las órdenes se almacenan en archivos JSON y se gestionan mediante estructuras de datos como el **Árbol Binario de Búsqueda (BST)** para los productos y **Lista Enlazada (Linked List)** para las órdenes.
 
-## Requisitos
+## Configuración
+
+### Requisitos previos
 
 - Python 3.7+
 - FastAPI
 - Uvicorn (para ejecutar el servidor)
 
-## Instalación
+### Instalación
 
 1. Clona este repositorio:
 
@@ -30,18 +32,14 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
    pip install -r requirements.txt
    ```
 
-4. Ejecuta la aplicación:
+### Ejecución
 
+1. Inicia el servidor de FastAPI:
    ```bash
-   uvicorn "app:app" --reload
+   uvicorn main:app --reload
    ```
 
-   Esto iniciará el servidor en `http://127.0.0.1:8000`.
-
-5. Accede a la documentación de la API en Swagger:
-
-   Una vez que el servidor esté en funcionamiento, podrás acceder a la documentación interactiva de la API en Swagger en la siguiente URL:
-   
+2. Accede a la documentación interactiva de la API en Swagger:
    http://127.0.0.1:8000/docs
 
 ## Endpoints
