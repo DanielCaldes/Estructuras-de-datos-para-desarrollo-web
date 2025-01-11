@@ -2,54 +2,45 @@
 
 Este es un servicio de gestión de productos y pedidos desarrollado con **FastAPI**. La aplicación permite crear productos, consultar productos por ID, crear órdenes, listar órdenes, actualizar y eliminar órdenes. Los productos y las órdenes se almacenan en archivos JSON y se gestionan mediante estructuras de datos como el **Árbol Binario de Búsqueda (BST)** para los productos y **Lista Enlazada (Linked List)** para las órdenes.
 
-## Requisitos
+## Configuración
+
+### Requisitos previos
 
 - Python 3.7+
 - FastAPI
 - Uvicorn (para ejecutar el servidor)
 
-## Instalación
+### Instalación
 
 1. Clona este repositorio:
 
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+   git clone https://github.com/DanielCaldes/Estructuras-de-datos-para-desarrollo-web.git
+   cd Estructuras-de-datos-para-desarrollo-web
    ```
 
-2. Crea un entorno virtual:
+2. Crea y activa el entorno virtual (ejemplo con conda):
 
    ```bash
-   python -m venv venv
+   conda create --name nombre_del_entorno python=3.x
+   conda activate nombre_del_entorno
    ```
 
-3. Activa el entorno virtual:
-   
-   - En Windows:
-
-     ```bash
-     .\venv\Scripts\activate
-     ```
-
-   - En macOS/Linux:
-
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. Instala las dependencias:
+3. Instala las dependencias:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Ejecuta la aplicación:
+### Ejecución
 
+1. Inicia el servidor de FastAPI:
    ```bash
-   uvicorn "Estructuras de datos:app" --reload
+   uvicorn main:app --reload
    ```
 
-   Esto iniciará el servidor en `http://127.0.0.1:8000`.
+2. Accede a la documentación interactiva de la API en Swagger:
+   http://127.0.0.1:8000/docs
 
 ## Endpoints
 
