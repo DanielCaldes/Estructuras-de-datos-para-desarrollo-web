@@ -7,7 +7,8 @@ import os
 import sys
 import json
 
-# COMANDO: uvicorn "app:app" --reload
+# COMANDO: uvicorn "main:app" --reload
+
 app = FastAPI()
 
 project_root = os.path.abspath(os.path.dirname(__file__))
