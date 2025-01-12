@@ -2,6 +2,20 @@
 
 Este es un servicio de gestión de productos y pedidos desarrollado con **FastAPI**. La aplicación permite crear productos, consultar productos por ID, crear órdenes, listar órdenes, actualizar y eliminar órdenes. Los productos y las órdenes se almacenan en archivos JSON y se gestionan mediante estructuras de datos como el **Árbol Binario de Búsqueda (BST)** para los productos y **Lista Enlazada (Linked List)** para las órdenes.
 
+## Características
+
+### Productos:
+- **Crear un producto**: Permite añadir un nuevo producto a la base de datos.
+- **Consultar un producto por ID**: Recupera la información de un producto específico usando su ID.
+
+### Pedidos:
+- **Crear un pedido**: Permite registrar un nuevo pedido con los productos seleccionados y sus cantidades.
+- **Consultar un pedido por ID**: Recupera los detalles de un pedido, incluyendo los productos, cantidades y precios.
+- **Actualizar un pedido**: Modifica un pedido existente actualizando los productos o sus cantidades.
+- **Eliminar un pedido**: Elimina un pedido específico de la base de datos.
+- **Listar todos los pedidos**: Obtiene una lista de todos los pedidos realizados, con los detalles de productos y cantidades correspondientes.
+
+
 ## Configuración
 
 ### Requisitos previos
