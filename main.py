@@ -81,18 +81,24 @@ def read_from_json(path: str, model_class : T) -> List[T]:
 
 #Load products
 products = read_from_json(PRODUCTS_PATH, Product)
-state.last_product_id = len(products)
+last_product_id = 0
 for product in products:
+    if product.id > last_product_id:
+        last_product_id = product.id
     products_bst.insert(product)
+state.last_product_id = last_product_id
 #Load orders
 orders = read_from_json(ORDERS_PATH, OrderData)
-state.last_order_data_id = len(orders)
+last_order_id = 0
 for order in orders:
+    if order.id > last_order_id:
+        last_order_id = order.id
     orders_linkedList.insert(order)
+state.last_order_data_id = last_order_id
 
 
 #a) Create product
-@app.post("/api/product")
+@app.post("/api/products")
 def create_product(product : Product):
     state.last_product_id += 1
     product.id = state.last_product_id
@@ -101,7 +107,7 @@ def create_product(product : Product):
     return {"message" : f"Product created with id : {product.id}"}
 
 #b) Show product by id
-@app.get("/api/product/{id}")
+@app.get("/api/products/{id}")
 def product_info(id : int):
     product = products_bst.search(id)
     if product:
@@ -111,7 +117,7 @@ def product_info(id : int):
         raise HTTPException(status_code=500, detail="No product with that id")
 
 #c) Create order
-@app.post("/api/order")
+@app.post("/api/orders")
 def create_order(order_data : OrderData):
     state.last_order_data_id += 1
     order_data.id = state.last_order_data_id
@@ -123,20 +129,26 @@ def products_in_order(order):
     if order:
         products_ids = order.products
         products = []
+        total_price = 0
         for product_id, quantity in products_ids.items():
             product_node = products_bst.search(product_id)
             if product_node:
                 product = product_node.value
                 products.append({
-                    "product name": product.product_name,
-                    "product price": product.price,
+                    "product_name": product.product_name,
+                    "product_price": product.price,
                     "quantity": quantity,
-                    "total price": product.price * quantity
+                    "total_price": product.price * quantity
                 })
-    return products
+                total_price += product.price * quantity
+        return{
+            "products":products,
+            "total_price":total_price
+        }
+    return {}
 
 #d) Find order by id
-@app.get("/api/order/{id}")
+@app.get("/api/orders/{id}")
 def order_info(id : int):
     order = orders_linkedList.find(lambda order: order.id == id)
     if order:
@@ -146,7 +158,7 @@ def order_info(id : int):
         raise HTTPException(status_code=500, detail=f"No order with that id {id}")
     
 #e) update order
-@app.put("/api/order/{id}")
+@app.put("/api/orders/{id}")
 def update_order(id : int, order_data : OrderData):
     order_updated = orders_linkedList.find(lambda order: order.id == id)
     if order_updated:
@@ -157,7 +169,7 @@ def update_order(id : int, order_data : OrderData):
         raise HTTPException(status_code=500, detail="No order with that id")
 
 #f) delete order
-@app.delete("/api/order/{id}")
+@app.delete("/api/orders/{id}")
 def delete_order(id : int):
     order_deleted = orders_linkedList.delete(lambda order: order.id == id)
     if order_deleted:
@@ -169,6 +181,7 @@ def delete_order(id : int):
 #g) list all orders
 @app.get("/api/orders")
 def list_orders():
-    order_list = []
-    [order_list.append(products_in_order(order)) for order in orders_linkedList.list_items()]
-    return order_list
+    order_dict = {}
+    for order in orders_linkedList.list_items():
+        order_dict[f"order_{order.id}"] = products_in_order(order)
+    return order_dict

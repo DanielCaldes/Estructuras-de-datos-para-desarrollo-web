@@ -8,5 +8,15 @@
         "id": 2,
         "product_name": "Salchichas",
         "price": 1.0
+    },
+    {
+        "id": 3,
+        "product_name": "Tableta de chocolate",
+        "price": 1.5
+    },
+    {
+        "id": 4,
+        "product_name": "Cocacola 1L",
+        "price": 2.5
     }
 ]
