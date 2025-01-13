@@ -98,8 +98,9 @@ state.last_order_data_id = last_order_id
 
 
 #a) Create product
-@app.post("/api/products")
+@app.post("/api/products", tags=["Products"])
 def create_product(product : Product):
+    """Create product"""
     state.last_product_id += 1
     product.id = state.last_product_id
     products_bst.insert(product)
@@ -107,8 +108,9 @@ def create_product(product : Product):
     return {"message" : f"Product created with id : {product.id}"}
 
 #b) Show product by id
-@app.get("/api/products/{id}")
+@app.get("/api/products/{id}", tags=["Products"])
 def product_info(id : int):
+    """Show product by id"""
     product = products_bst.search(id)
     if product:
         product_info = {"product name": product.value.product_name,"product price": product.value.price}
@@ -117,8 +119,9 @@ def product_info(id : int):
         raise HTTPException(status_code=500, detail="No product with that id")
 
 #c) Create order
-@app.post("/api/orders")
+@app.post("/api/orders", tags=["Orders"])
 def create_order(order_data : OrderData):
+    """Create order"""
     state.last_order_data_id += 1
     order_data.id = state.last_order_data_id
     orders_linkedList.insert(order_data)
@@ -148,8 +151,9 @@ def products_in_order(order):
     return {}
 
 #d) Find order by id
-@app.get("/api/orders/{id}")
+@app.get("/api/orders/{id}", tags=["Orders"])
 def order_info(id : int):
+    """Find order by id"""
     order = orders_linkedList.find(lambda order: order.id == id)
     if order:
         products = products_in_order(order)
@@ -158,8 +162,9 @@ def order_info(id : int):
         raise HTTPException(status_code=500, detail=f"No order with that id {id}")
     
 #e) update order
-@app.put("/api/orders/{id}")
+@app.put("/api/orders/{id}", tags=["Orders"])
 def update_order(id : int, order_data : OrderData):
+    """Update order by id"""
     order_updated = orders_linkedList.find(lambda order: order.id == id)
     if order_updated:
         order_updated.products = order_data.products
@@ -169,8 +174,9 @@ def update_order(id : int, order_data : OrderData):
         raise HTTPException(status_code=500, detail="No order with that id")
 
 #f) delete order
-@app.delete("/api/orders/{id}")
+@app.delete("/api/orders/{id}", tags=["Orders"])
 def delete_order(id : int):
+    """Delete order by id"""
     order_deleted = orders_linkedList.delete(lambda order: order.id == id)
     if order_deleted:
         write_to_json(orders_linkedList.list_items(), ORDERS_PATH)
@@ -179,8 +185,9 @@ def delete_order(id : int):
         raise HTTPException(status_code=500, detail=f"No order with that id {id}")
 
 #g) list all orders
-@app.get("/api/orders")
+@app.get("/api/orders", tags=["Orders"])
 def list_orders():
+    """Returns all orders listed"""
     order_dict = {}
     for order in orders_linkedList.list_items():
         order_dict[f"order_{order.id}"] = products_in_order(order)
