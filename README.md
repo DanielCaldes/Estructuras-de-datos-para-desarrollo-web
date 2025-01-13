@@ -1,6 +1,6 @@
 # API de Gestión de Productos y Pedidos
 
-Este es un servicio de gestión de productos y pedidos desarrollado con **FastAPI**. La aplicación permite crear productos, consultar productos por ID, crear órdenes, listar órdenes, actualizar y eliminar órdenes. Los productos y las órdenes se almacenan en archivos JSON y se gestionan mediante estructuras de datos como el **Árbol Binario de Búsqueda (BST)** para los productos y **Lista Enlazada (Linked List)** para las órdenes.
+Esta aplicación es un servicio de gestión de productos y pedidos desarrollado con **FastAPI**. Permite crear productos, consultar productos por ID, crear órdenes, listar órdenes, actualizar y eliminar órdenes. Los productos y las órdenes se almacenan en archivos JSON y se gestionan mediante estructuras de datos como el **Árbol Binario de Búsqueda (BST)** para los productos y **Lista Enlazada (Linked List)** para las órdenes.
 
 ## Características
 
@@ -60,7 +60,10 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **1. Crear un producto**
 
-- **Método**: `POST /api/product`
+- **Método**: POST
+  ```url
+  /api/products
+  ```
 - **Descripción**: Crea un nuevo producto y lo agrega a la base de datos.
 - **Cuerpo de la solicitud** (JSON):
   ```json
@@ -78,7 +81,10 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **2. Consultar un producto por ID**
 
-- **Método**: `GET /api/product/{id}`
+- **Método**: GET
+   ```url
+   /api/products/{id}
+   ```
 - **Descripción**: Recupera la información de un producto usando su ID.
 - **Respuesta**:
   ```json
@@ -90,7 +96,10 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **3. Crear un pedido**
 
-- **Método**: `POST /api/order`
+- **Método**: POST
+  ```url
+  /api/orders
+  ```
 - **Descripción**: Crea un nuevo pedido con los productos seleccionados y sus cantidades.
 - **Cuerpo de la solicitud** (JSON):
   ```json
@@ -110,29 +119,38 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **4. Consultar un pedido por ID**
 
-- **Método**: `GET /api/order/{id}`
+- **Método**: GET
+  ```url
+  /api/orders/{id}
+  ```
 - **Descripción**: Recupera los detalles de un pedido por su ID, incluyendo los productos en el pedido.
 - **Respuesta**:
   ```json
-  [
-    {
-      "product name": "Patatas",
-      "product price": 2.5,
-      "quantity": 2,
-      "total price": 5
-    },
-    {
-      "product name": "Tomates",
-      "product price": 3.0,
-      "quantity": 1,
-      "total price": 3
-    }
-  ]
+  {
+     "products": [
+       {
+         "product_name": "Patatas",
+         "product_price": 2,
+         "quantity": 2,
+         "total_price": 4
+       },
+       {
+         "product_name": "Tableta de chocolate",
+         "product_price": 1.5,
+         "quantity": 1,
+         "total_price": 1.5
+       }
+     ],
+     "total_price": 5.5
+   }
   ```
 
 ### **5. Actualizar un pedido**
 
-- **Método**: `PUT /api/order/{id}`
+- **Método**: PUT
+  ```url
+  /api/orders/{id}
+  ```
 - **Descripción**: Actualiza un pedido existente con nuevos productos o cantidades.
 - **Cuerpo de la solicitud** (JSON):
   ```json
@@ -152,7 +170,10 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **6. Eliminar un pedido**
 
-- **Método**: `DELETE /api/order/{id}`
+- **Método**: DELETE
+   ```url
+   /api/orders/{id}
+   ```
 - **Descripción**: Elimina un pedido existente por su ID.
 - **Respuesta**:
   ```json
@@ -163,26 +184,49 @@ Este es un servicio de gestión de productos y pedidos desarrollado con **FastAP
 
 ### **7. Listar todos los pedidos**
 
-- **Método**: `GET /api/orders`
+- **Método**: GET
+  ```url
+  /api/orders
+  ```
 - **Descripción**: Lista todos los pedidos con los productos y cantidades correspondientes.
 - **Respuesta**:
   ```json
-  [
-    [
-      {
-        "product name": "Patatas",
-        "product price": 2.5,
-        "quantity": 2,
-        "total price": 5
-      },
-      {
-        "product name": "Tomates",
-        "product price": 3.0,
-        "quantity": 1,
-        "total price": 3
-      }
-    ]
-  ]
+  {
+     "order_1": {
+       "products": [
+         {
+           "product_name": "Patatas",
+           "product_price": 2,
+           "quantity": 2,
+           "total_price": 4
+         },
+         {
+           "product_name": "Tableta de chocolate",
+           "product_price": 1.5,
+           "quantity": 1,
+           "total_price": 1.5
+         }
+       ],
+       "total_price": 5.5
+     },
+     "order_3": {
+       "products": [
+         {
+           "product_name": "Patatas",
+           "product_price": 2,
+           "quantity": 2,
+           "total_price": 4
+         },
+         {
+           "product_name": "Salchichas",
+           "product_price": 1,
+           "quantity": 2,
+           "total_price": 2
+         }
+       ],
+       "total_price": 6
+     }
+   }
   ```
 
 ## Estructura del Proyecto
