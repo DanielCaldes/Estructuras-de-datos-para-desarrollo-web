@@ -31,6 +31,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
    ```bash
    git clone https://github.com/DanielCaldes/Estructuras-de-datos-para-desarrollo-web.git
    cd Estructuras-de-datos-para-desarrollo-web
+   cd app
    ```
 
 2. Crea y activa el entorno virtual (ejemplo con conda):
@@ -232,8 +233,8 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 ## Estructura del Proyecto
 
 ```
-.
-├── app.py                   # Archivo principal con las rutas de la API
+.                            # Carpeta app
+├── main.py                  # Archivo principal con las rutas de la API
 ├── requirements.txt         # Dependencias del proyecto
 ├── data/
 │   ├── products.json        # Archivo JSON donde se almacenan los productos
