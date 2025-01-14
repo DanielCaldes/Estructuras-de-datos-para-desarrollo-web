@@ -108,12 +108,12 @@ def create_product(product : Product):
     return {"message" : f"Product created with id : {product.id}"}
 
 #b) Show product by id
-@app.get("/api/products/{id}", tags=["Products"])
-def product_info(id : int):
+@app.get("/api/products/{product_id}", tags=["Products"])
+def product_info(product_id : int):
     """Show product by id"""
-    product = products_bst.search(id)
+    product = products_bst.search(product_id)
     if product:
-        product_info = {"product name": product.value.product_name,"product price": product.value.price}
+        product_info = {"product_name": product.value.product_name,"product_price": product.value.price}
         return product_info
     else:
         raise HTTPException(status_code=500, detail="No product with that id")
@@ -151,21 +151,21 @@ def products_in_order(order):
     return {}
 
 #d) Find order by id
-@app.get("/api/orders/{id}", tags=["Orders"])
-def order_info(id : int):
+@app.get("/api/orders/{order_id}", tags=["Orders"])
+def order_info(order_id : int):
     """Find order by id"""
-    order = orders_linkedList.find(lambda order: order.id == id)
+    order = orders_linkedList.find(lambda order: order.id == order_id)
     if order:
         products = products_in_order(order)
         return products
     else:
-        raise HTTPException(status_code=500, detail=f"No order with that id {id}")
+        raise HTTPException(status_code=500, detail=f"No order with that id {order_id}")
     
 #e) update order
-@app.put("/api/orders/{id}", tags=["Orders"])
-def update_order(id : int, order_data : OrderData):
+@app.put("/api/orders/{order_id}", tags=["Orders"])
+def update_order(order_id : int, order_data : OrderData):
     """Update order by id"""
-    order_updated = orders_linkedList.find(lambda order: order.id == id)
+    order_updated = orders_linkedList.find(lambda order: order.id == order_id)
     if order_updated:
         order_updated.products = order_data.products
         write_to_json(orders_linkedList.list_items(), ORDERS_PATH)
@@ -174,15 +174,15 @@ def update_order(id : int, order_data : OrderData):
         raise HTTPException(status_code=500, detail="No order with that id")
 
 #f) delete order
-@app.delete("/api/orders/{id}", tags=["Orders"])
-def delete_order(id : int):
+@app.delete("/api/orders/{order_id}", tags=["Orders"])
+def delete_order(order_id : int):
     """Delete order by id"""
-    order_deleted = orders_linkedList.delete(lambda order: order.id == id)
+    order_deleted = orders_linkedList.delete(lambda order: order.id == order_id)
     if order_deleted:
         write_to_json(orders_linkedList.list_items(), ORDERS_PATH)
         return{"message" : "Order deleted!"}
     else:
-        raise HTTPException(status_code=500, detail=f"No order with that id {id}")
+        raise HTTPException(status_code=500, detail=f"No order with that id {order_id}")
 
 #g) list all orders
 @app.get("/api/orders/", tags=["Orders"])

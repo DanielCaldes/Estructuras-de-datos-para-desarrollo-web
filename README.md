@@ -84,14 +84,14 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: GET
    ```url
-   /api/products/{id}
+   /api/products/{product_id}
    ```
 - **Descripción**: Recupera la información de un producto usando su ID.
 - **Respuesta**:
   ```json
   {
-    "product name": "Patatas",
-    "product price": 2.5
+    "product_name": "Patatas",
+    "product_price": 2.5
   }
   ```
 
@@ -122,7 +122,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: GET
   ```url
-  /api/orders/{id}
+  /api/orders/{order_id}
   ```
 - **Descripción**: Recupera los detalles de un pedido por su ID, incluyendo los productos en el pedido.
 - **Respuesta**:
@@ -150,7 +150,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: PUT
   ```url
-  /api/orders/{id}
+  /api/orders/{order_id}
   ```
 - **Descripción**: Actualiza un pedido existente con nuevos productos o cantidades.
 - **Cuerpo de la solicitud** (JSON):
@@ -173,7 +173,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: DELETE
    ```url
-   /api/orders/{id}
+   /api/orders/{order_id}
    ```
 - **Descripción**: Elimina un pedido existente por su ID.
 - **Respuesta**:
