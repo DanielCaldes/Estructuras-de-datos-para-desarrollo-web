@@ -98,7 +98,7 @@ state.last_order_data_id = last_order_id
 
 
 #a) Create product
-@app.post("/api/products", tags=["Products"])
+@app.post("/api/products/", tags=["Products"])
 def create_product(product : Product):
     """Create product"""
     state.last_product_id += 1
@@ -119,7 +119,7 @@ def product_info(id : int):
         raise HTTPException(status_code=500, detail="No product with that id")
 
 #c) Create order
-@app.post("/api/orders", tags=["Orders"])
+@app.post("/api/orders/", tags=["Orders"])
 def create_order(order_data : OrderData):
     """Create order"""
     state.last_order_data_id += 1
@@ -185,7 +185,7 @@ def delete_order(id : int):
         raise HTTPException(status_code=500, detail=f"No order with that id {id}")
 
 #g) list all orders
-@app.get("/api/orders", tags=["Orders"])
+@app.get("/api/orders/", tags=["Orders"])
 def list_orders():
     """Returns all orders listed"""
     order_dict = {}

@@ -62,7 +62,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: POST
   ```url
-  /api/products
+  /api/products/
   ```
 - **Descripción**: Crea un nuevo producto y lo agrega a la base de datos.
 - **Cuerpo de la solicitud** (JSON):
@@ -98,7 +98,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: POST
   ```url
-  /api/orders
+  /api/orders/
   ```
 - **Descripción**: Crea un nuevo pedido con los productos seleccionados y sus cantidades.
 - **Cuerpo de la solicitud** (JSON):
@@ -186,7 +186,7 @@ Esta aplicación es un servicio de gestión de productos y pedidos desarrollado 
 
 - **Método**: GET
   ```url
-  /api/orders
+  /api/orders/
   ```
 - **Descripción**: Lista todos los pedidos con los productos y cantidades correspondientes.
 - **Respuesta**:
